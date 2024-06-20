@@ -1,0 +1,19 @@
+<ul>
+  <div>Last updated: {{ date | date : "MM/dd/yyy" }}</div>
+  <div>Search: <input [(ngModel)]="searchValue" type="text" /></div>
+  <div
+    *ngFor="
+      let todoItem of todoItems | filterTasks : 'description' : searchValue;
+      let i = index
+    "
+    style="display: flex; gap: 1rem; margin-bottom: 1rem"
+  >
+    <app-todo-list-item #listItem [item]="todoItem" [(progress)]="progress">
+      {{ i + 1 }}
+    </app-todo-list-item>
+    <button (click)="onDelete(todoItem)">Delete</button>
+    <button #viewBtn (click)="onView(todoItem)">View</button>
+  </div>
+
+  <app-create-todo-list-item (createTask)="onCreate($event)" />
+</ul>

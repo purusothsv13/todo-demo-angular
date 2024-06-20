@@ -1,0 +1,11 @@
+<li
+  style="padding: 1rem; border: 1px solid black"
+  appHighlightItem
+  [progress]="progress"
+>
+  <ng-content></ng-content>
+  {{ item.title }} - {{ item.completed ? "Completed" : "Pending" }} -
+  {{ progress | percent }}
+
+  <button (click)="updateProgress()">Update Progress</button>
+</li>

@@ -1,0 +1,96 @@
+<div style="display: flex; flex-direction: column; gap: 1rem">
+  <h2>Profile</h2>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex; flex-direction: column; gap: 0.25rem">
+      <div>First Name<span style="color: red">*</span></div>
+      <input type="text" formControlName="firstName" />
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.25rem">
+      <div>Last Name<span style="color: red">*</span></div>
+      <input type="text" formControlName="lastName" />
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.25rem">
+      <div>Email<span style="color: red">*</span></div>
+      <input type="email" formControlName="email" />
+      <div
+        *ngIf="emailControl.touched && emailControl.errors?.['required']"
+        style="color: red; font-size: 0.75rem"
+      >
+        Email is required
+      </div>
+      <div
+        *ngIf="emailControl.touched && emailControl.errors?.['email']"
+        style="color: red; font-size: 0.75rem"
+      >
+        Please enter a valid email
+      </div>
+    </div>
+    <div
+      [formGroup]="addressFormGroup"
+      style="display: flex; flex-direction: column; gap: 0.25rem"
+    >
+      <h4 style="margin: 0.25rem">Address Information</h4>
+      <div style="display: flex; flex-direction: column; gap: 0.25rem">
+        <div>Street<span style="color: red">*</span></div>
+        <input type="text" formControlName="street" />
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.25rem">
+        <div>City</div>
+        <input type="text" formControlName="city" />
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.25rem">
+        <div>Pincode<span style="color: red">*</span></div>
+        <input type="number" formControlName="pincode" />
+      </div>
+    </div>
+    <div
+      [formGroup]="identificationFormGroup"
+      style="display: flex; flex-direction: column; gap: 0.25rem"
+    >
+      <h4 style="margin: 0.25rem">Personal Identification</h4>
+      <div style="display: flex; flex-direction: column; gap: 0.25rem">
+        <div>License</div>
+        <input type="text" formControlName="license" />
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.25rem">
+        <div>PAN</div>
+        <input type="text" formControlName="pan" />
+      </div>
+      <div
+        *ngIf="identificationFormGroup.touched && identificationFormGroup.errors?.['identificationRequired']"
+        style="color: red; font-size: 0.75rem"
+      >
+        {{ identificationFormGroup.errors?.['identificationRequired']}}
+      </div>
+    </div>
+    <div
+      formArrayName="phoneNumbers"
+      style="display: flex; flex-direction: column; gap: 0.25rem"
+    >
+      <h4 style="margin: 0.25rem">Phone Numbers</h4>
+      <div
+        *ngFor="let control of phoneNumberControls; let i = index"
+        style="display: flex; flex-direction: column; gap: 0.25rem"
+      >
+        <div>Phone Number {{ i + 1 }}<span style="color: red">*</span></div>
+        <div style="display: flex; gap: 1rem">
+          <input style="width: 90%" type="number" [formControlName]="i" />
+          <button
+            *ngIf="i === phoneNumberControls.length - 1"
+            (click)="addPhoneNumber()"
+          >
+            +1
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button
+      style="margin-top: 1rem"
+      type="submit"
+      [disabled]="!profileForm.valid"
+    >
+      Update
+    </button>
+  </form>
+</div>
