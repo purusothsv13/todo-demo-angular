@@ -8,10 +8,20 @@
     "
     style="display: flex; gap: 1rem; margin-bottom: 1rem"
   >
-    <app-todo-list-item #listItem [item]="todoItem" [(progress)]="progress">
+    <app-todo-list-item
+      data-testid="todo-list-item"
+      #listItem
+      [item]="todoItem"
+      [(progress)]="progress"
+    >
       {{ i + 1 }}
     </app-todo-list-item>
-    <button (click)="onDelete(todoItem)">Delete</button>
+    <button
+      data-testid="todo-list-item-delete-btn"
+      (click)="onDelete(todoItem)"
+    >
+      Delete
+    </button>
     <button #viewBtn (click)="onView(todoItem)">View</button>
   </div>
 

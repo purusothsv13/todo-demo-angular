@@ -20,6 +20,7 @@ import { first } from 'rxjs';
   styleUrl: './profile-form.component.scss',
 })
 export class ProfileFormComponent {
+  profileUpdated = false;
   profileForm = new FormGroup<ProfileForm>({
     firstName: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
@@ -84,7 +85,7 @@ export class ProfileFormComponent {
       return;
     }
 
-    console.log(this.profileForm.get);
+    this.profileUpdated = true;
   }
 
   addPhoneNumber() {

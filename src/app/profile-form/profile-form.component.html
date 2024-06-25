@@ -1,6 +1,10 @@
 <div style="display: flex; flex-direction: column; gap: 1rem">
   <h2>Profile</h2>
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  <form
+    data-testid="profile-form"
+    [formGroup]="profileForm"
+    (ngSubmit)="onSubmit()"
+  >
     <div style="display: flex; flex-direction: column; gap: 0.25rem">
       <div>First Name<span style="color: red">*</span></div>
       <input type="text" formControlName="firstName" />
@@ -76,6 +80,8 @@
         <div style="display: flex; gap: 1rem">
           <input style="width: 90%" type="number" [formControlName]="i" />
           <button
+            data-testid="add-phone-btn"
+            type="button"
             *ngIf="i === phoneNumberControls.length - 1"
             (click)="addPhoneNumber()"
           >
@@ -86,11 +92,15 @@
     </div>
 
     <button
+      data-testid="profile-submit"
       style="margin-top: 1rem"
       type="submit"
       [disabled]="!profileForm.valid"
     >
       Update
     </button>
+    <div data-testid="profile-msg" *ngIf="profileUpdated">
+      Profile updated successfully
+    </div>
   </form>
 </div>

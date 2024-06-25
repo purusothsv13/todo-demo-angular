@@ -78,13 +78,13 @@ export class TodoListComponent {
       console.log('merge', val);
     });
 
-    this.todoDataService.setSubject(1);
-    this.todoDataService.setSubject(2);
-    this.todoDataService.setSubject(3);
-    this.todoDataService.setSubject(4);
-    this.todoDataService.getSubject().subscribe((val) => {
-      console.log('Component1', val);
-    });
+    // this.todoDataService.setSubject(1);
+    // this.todoDataService.setSubject(2);
+    // this.todoDataService.setSubject(3);
+    // this.todoDataService.setSubject(4);
+    // this.todoDataService.getSubject().subscribe((val) => {
+    //   console.log('Component1', val);
+    // });
 
     this.todoDataService
       .getTodoItems$()
@@ -110,7 +110,11 @@ export class TodoListComponent {
     this.todoDataService.addTodoItem(todoItem).subscribe();
   }
 
-  onView(item: TodoItem) {
+  onView(item: TodoItem | null) {
+    if (!item) {
+      return;
+    }
+
     this.router.navigate([item.id], { relativeTo: this.route });
   }
 

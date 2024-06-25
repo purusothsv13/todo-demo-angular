@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TodoListComponent should assign items: progress 1`] = `0.7`;
+
+exports[`TodoListComponent should assign items: todoItems 1`] = `
+[
+  {
+    "completed": false,
+    "title": "Task1",
+  },
+  {
+    "completed": true,
+    "title": "Task2",
+  },
+]
+`;
+
+exports[`TodoListComponent should filter out items with empty title: todoItems 1`] = `
+[
+  {
+    "title": "Task1",
+  },
+]
+`;
+
+exports[`TodoListComponent should navigate to details page 1`] = `
+[
+  [
+    "ITEM_ID_1",
+  ],
+  {
+    "relativeTo": "ACTIVATED_ROUTE",
+  },
+]
+`;
+
+exports[`TodoListComponent template should render todo list item 1`] = `
+[
+  [
+    {
+      "completed": false,
+      "title": "Task1",
+    },
+  ],
+]
+`;
